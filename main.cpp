@@ -7,11 +7,22 @@ using namespace std::chrono;
 
 
 int main( ) {
-   std::cout << "Hello, World!" << std::endl;
    executor e{};
+   
+   
+   e.exec("hostname");
+//   if( "p52s" == e.get_output() ) {
+//      e.exec( "who | cut -d' ' -f1 | sort | uniq" );
+//
+//   }
    while( true ) {
       e.exec( "who | cut -d' ' -f1 | sort | uniq" );
-      std::cout << e.get_output( ) << "\n";
+      
+      if( e.get_output().length() == 0 ) {
+         std::cout << "NONE\n";
+      } else {
+         std::cout << e.get_output( ) << "\n";
+      }
       std::this_thread::sleep_for(1s);
    }
    return 0;

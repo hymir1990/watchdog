@@ -1,0 +1,10 @@
+[Unit]
+Description=Service to set CPU Governor to PERFORMANCE
+
+[Service]
+ExecStart=/bin/bash -c '/usr/bin/performance_gov >>/var/log/performance_gov/log 2>>/var/log/performance_gov/err'
+Restart=always
+RestartSec=600
+
+[Install]
+WantedBy=multi-user.target
